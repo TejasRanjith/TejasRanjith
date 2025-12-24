@@ -437,6 +437,499 @@ const Portfolio = () => {
     ├── example.py
     └── README.md`,
       details: { overview: "Backend logic.", features: ["Array manipulation", "Session tokens"], installation: "python example.py", usage: "Run scripts." }
+    },
+    {
+      title: "Aida Web",
+      description: "Aida Web project implementation.",
+      tags: ['JavaScript', 'TypeScript', 'HTML', 'Ruby', 'CSS'],
+      category: "App Development",
+      featured: false,
+      fileStructure: `└── aida-web/
+    ├── README.md
+    ├── eslint.config.js
+    ├── index.html
+    ├── node_modules
+    ├── package-lock.json
+    ├── package.json
+    ├── public
+    ├── src
+    ├── tailwind.config.js
+    └── vite.config.js`,
+      details: {
+        overview: "Aida Web project sources.",
+        features: [],
+        installation: "Check package.json.",
+        usage: "npm run dev"
+      }
+    },
+    {
+      title: "Ai Based Projects",
+      description: "Collection of AI based experiments.",
+      tags: ['AI'],
+      category: "AI & ML",
+      featured: false,
+      fileStructure: `└── Ai-Based-Projects/
+    └── README.md`,
+      details: { overview: "AI experiments.", features: [], installation: "N/A", usage: "N/A" }
+    },
+    {
+      title: "Gitsample",
+      description: "Git sample project.",
+      tags: ['HTML', 'CSS'],
+      category: "Backend & DB",
+      featured: false,
+      fileStructure: `└── gitsample/
+    ├── README.md
+    ├── index.html
+    └── style.css`,
+      details: { overview: "Sample git project.", features: [], installation: "N/A", usage: "N/A" }
+    },
+    {
+      title: "Railizard",
+      description: "Railizard application.",
+      tags: ['PHP', 'HTML', 'JavaScript', 'CSS'],
+      category: "App Development",
+      featured: false,
+      fileStructure: `└── Railizard/
+    ├── README.md
+    ├── Readme.txt
+    ├── assets
+    ├── forms
+    ├── index.html
+    ├── portfolio-details.html
+    ├── service-details.html
+    └── starter-page.html`,
+      details: { overview: "Railizard web app.", features: [], installation: "PHP server required.", usage: "Deploy to server." }
+    },
+    {
+      title: "Snapwaste",
+      description: "Snapwaste mobile application.",
+      tags: ['C++', 'HTML', 'Dart'],
+      category: "AI & ML",
+      featured: false,
+      fileStructure: `└── SnapWaste/
+    ├── README.md
+    ├── analysis_options.yaml
+    ├── android
+    ├── ios
+    ├── lib
+    ├── linux
+    ├── macos
+    ├── pubspec.lock
+    ├── pubspec.yaml
+    ├── test
+    ├── web
+    └── windows`,
+      details: { overview: "Multi-platform app.", features: [], installation: "flutter pub get", usage: "flutter run" }
+    },
+    {
+      title: "Web Test",
+      description: "Web testing project.",
+      tags: ['HTML', 'TypeScript', 'JavaScript', 'CSS'],
+      category: "App Development",
+      featured: false,
+      fileStructure: `└── web-test/
+    ├── README.md
+    ├── eslint.config.js
+    ├── index.html
+    ├── package.json
+    ├── public
+    ├── src
+    ├── tsconfig.app.json
+    ├── tsconfig.json
+    ├── tsconfig.node.json
+    └── vite.config.ts`,
+      details: { overview: "Web testing suite.", features: [], installation: "npm install", usage: "npm run test" }
+    },
+    {
+      title: "Wallie",
+      description: "Wallie IoT project.",
+      tags: ['Python'],
+      category: "IoT & Hardware",
+      featured: false,
+      fileStructure: `└── wallie/
+    ├── README.md
+    └── wallie.py`,
+      details: { overview: "Wallie python script.", features: [], installation: "python wallie.py", usage: "python wallie.py" }
+    },
+    {
+      title: "Lab",
+      description: "Academic lab works and experiments.",
+      tags: ['HTML', 'Java', 'Python', 'C'],
+      category: "Backend & DB",
+      featured: false,
+      fileStructure: `└── Lab/
+    ├── DS
+    ├── Exp.ipynb
+    ├── Github.sh
+    ├── Mysql
+    ├── Python AI Lab S5
+    ├── PythonLab S4
+    ├── README.md
+    ├── Shell
+    ├── commands.sql
+    ├── java
+    ├── output.png
+    └── python`,
+      details: { overview: "Lab repository.", features: [], installation: "N/A", usage: "N/A" }
+    },
+    {
+      title: "Workshop Qr Scanner",
+      description: "QR Scanner for workshops.",
+      tags: ['Python'],
+      category: "App Development",
+      featured: false,
+      fileStructure: `└── Workshop_QR_Scanner/
+    ├── README.md
+    ├── banner.png
+    ├── check.png
+    ├── cross.png\n    ├── data.xlsx
+    ├── datatest.xlsx
+    ├── downloader.py
+    ├── email_test.py
+    ├── images
+    ├── points.txt
+    ├── qr_code.png
+    ├── qrgen.py
+    ├── scanner.py
+    └── test-image.jpeg`,
+      details: { overview: "QR code tools.", features: ["Scanning", "Generation"], installation: "pip install requirements.txt", usage: "python scanner.py" }
+    },
+    {
+      title: "Ideaignite",
+      description: "Idea Ignite project.",
+      tags: ['HTML', 'JavaScript', 'CSS'],
+      category: "App Development",
+      featured: false,
+      fileStructure: `└── ideaignite/
+    ├── CHANGELOG.md
+    ├── LICENSE
+    ├── README.md
+    ├── dist
+    ├── index.html
+    ├── package-lock.json
+    ├── package-sample.json
+    ├── package.json
+    └── src`,
+      details: { overview: "Idea submission platform.", features: [], installation: "npm install", usage: "npm start" }
+    },
+    {
+      title: "Ideapitchingwebsite",
+      description: "Platform for pitching ideas.",
+      tags: ['HTML', 'Python', 'JavaScript', 'CSS'],
+      category: "App Development",
+      featured: false,
+      fileStructure: `└── IdeaPitchingWebsite/
+    ├── README.md
+    └── flask-app`,
+      details: { overview: "Flask based pitching site.", features: [], installation: "pip install flask", usage: "python app.py" }
+    },
+    {
+      title: "Newfolder",
+      description: "Miscellaneous scripts.",
+      tags: ['Python'],
+      category: "Backend & DB",
+      featured: false,
+      fileStructure: `└── newfolder/
+    ├── README.md
+    ├── dictionary.py
+    ├── python.ipynb
+    └── stream.py`,
+      details: { overview: "Script collection.", features: [], installation: "N/A", usage: "python stream.py" }
+    },
+    {
+      title: "Simzflutter",
+      description: "Simz Academy flutter app.",
+      tags: ['C++', 'HTML', 'Dart'],
+      category: "App Development",
+      featured: false,
+      fileStructure: `└── simzflutter/
+    ├── README.md
+    └── simz_academy`,
+      details: { overview: "Academy app.", features: [], installation: "flutter pub get", usage: "flutter run" }
+    },
+    {
+      title: "Futterinternship",
+      description: "Flutter internship projects.",
+      tags: ['C++', 'HTML', 'Dart'],
+      category: "App Development",
+      featured: false,
+      fileStructure: `└── FutterInternship/
+    ├── README.md
+    ├── example.dart
+    ├── flutter
+    ├── github.sh
+    ├── hello-world.dart
+    ├── oops
+    └── team_project`,
+      details: { overview: "Internship work.", features: [], installation: "N/A", usage: "N/A" }
+    },
+    {
+      title: "Project Flutter Internship",
+      description: "Flutter internship final project.",
+      tags: ['Dart'],
+      category: "App Development",
+      featured: false,
+      fileStructure: `└── Project--Flutter-internship/
+    ├── Dart Project
+    ├── README.md
+    └── github.sh`,
+      details: { overview: "Final project.", features: [], installation: "N/A", usage: "N/A" }
+    },
+    {
+      title: "Pythonplayground001",
+      description: "Python playground.",
+      tags: ['Python'],
+      category: "Backend & DB",
+      featured: false,
+      fileStructure: `└── PythonPlayGround001/
+    └── README.md`,
+      details: { overview: "Playground.", features: [], installation: "N/A", usage: "N/A" }
+    },
+    {
+      title: "Testproject",
+      description: "Test project.",
+      tags: ['Test'],
+      category: "Backend & DB",
+      featured: false,
+      fileStructure: `└── TestProject/
+    └── README.md`,
+      details: { overview: "Test.", features: [], installation: "N/A", usage: "N/A" }
+    },
+    {
+      title: "Voice",
+      description: "Voice recognition project 2.0.",
+      tags: ['HTML', 'Python', 'JavaScript'],
+      category: "AI & ML",
+      featured: false,
+      fileStructure: `└── voice/
+    ├── README.md
+    └── project2.0`,
+      details: { overview: "Voice tools.", features: [], installation: "pip install requirements.txt", usage: "python main.py" }
+    },
+    {
+      title: "Learningfest",
+      description: "Learning Fest web resources.",
+      tags: ['HTML', 'CSS'],
+      category: "App Development",
+      featured: false,
+      fileStructure: `└── LearningFest/
+    ├── README.md
+    ├── Week_1
+    ├── Week_2
+    ├── Week_3
+    └── index.html`,
+      details: { overview: "Educational materials.", features: [], installation: "N/A", usage: "Open index.html" }
+    },
+    {
+      title: "Nasa Space App",
+      description: "NASA Space App Challenge submission.",
+      tags: ['HTML', 'JavaScript', 'CSS'],
+      category: "AI & ML",
+      featured: false,
+      fileStructure: `└── Nasa_Space_App/
+    ├── README.md
+    ├── index.html
+    ├── script.js
+    ├── style.css
+    ├── mars.html
+    └── ...`,
+      details: { overview: "Space app challenge.", features: [], installation: "N/A", usage: "Open index.html" }
+    },
+    {
+      title: "Example",
+      description: "Example HTML project.",
+      tags: ['HTML'],
+      category: "Backend & DB",
+      featured: false,
+      fileStructure: `└── example/
+    ├── README.md
+    └── html.html`,
+      details: { overview: "Example.", features: [], installation: "N/A", usage: "Open html.html" }
+    },
+    {
+      title: "Mulearn Web",
+      description: "MuLearn Web portal.",
+      tags: ['Web'],
+      category: "App Development",
+      featured: false,
+      fileStructure: `└── MuLearn_Web/
+    └── README.md`,
+      details: { overview: "Web portal.", features: [], installation: "N/A", usage: "N/A" }
+    },
+    {
+      title: "Astrocoders",
+      description: "Astrocoders website.",
+      tags: ['HTML', 'JavaScript', 'CSS'],
+      category: "App Development",
+      featured: false,
+      fileStructure: `└── AstroCoders/
+    ├── README.md
+    ├── index.html
+    ├── script.js
+    └── style.css`,
+      details: { overview: "Space themed site.", features: [], installation: "N/A", usage: "Open index.html" }
+    },
+    {
+      title: "Skills Introduction To Github",
+      description: "GitHub skills course.",
+      tags: ['Git'],
+      category: "Backend & DB",
+      featured: false,
+      fileStructure: `└── skills-introduction-to-github/
+    ├── LICENSE
+    ├── README.md
+    ├── ROFILE.md
+    └── images`,
+      details: { overview: "GitHub training.", features: [], installation: "N/A", usage: "N/A" }
+    },
+    {
+      title: "Skills Github Pages",
+      description: "GitHub Pages skills course.",
+      tags: ['Git', 'Pages'],
+      category: "App Development",
+      featured: false,
+      fileStructure: `└── skills-github-pages/
+    ├── LICENSE
+    └── README.md`,
+      details: { overview: "GitHub Pages.", features: [], installation: "N/A", usage: "N/A" }
+    },
+    {
+      title: "Calculator",
+      description: "Simple Calculator app.",
+      tags: ['HTML', 'JavaScript', 'CSS'],
+      category: "App Development",
+      featured: false,
+      fileStructure: `└── Calculator/
+    ├── README.md
+    ├── manifest.json
+    ├── service-worker.js
+    ├── simple_calculator.html
+    └── style.css`,
+      details: { overview: "Calculator PWA.", features: ["PWA support"], installation: "N/A", usage: "Open simple_calculator.html" }
+    },
+    {
+      title: "Virtuosimusiq",
+      description: "Virtuosi Musiq web app.",
+      tags: ['HTML', 'JavaScript', 'CSS'],
+      category: "App Development",
+      featured: false,
+      fileStructure: `└── virtuosimusiq/
+    ├── OneSignalSDKWorker.js
+    ├── README.md
+    ├── index.html
+    ├── manifest.json
+    └── service-worker.js`,
+      details: { overview: "Music app.", features: [], installation: "N/A", usage: "Open index.html" }
+    },
+    {
+      title: "Intro To Github",
+      description: "Introduction to GitHub materials.",
+      tags: ['Git'],
+      category: "Backend & DB",
+      featured: false,
+      fileStructure: `└── intro-to-github/
+    ├── LICENSE
+    ├── PROFILE.md
+    ├── README.md
+    └── images`,
+      details: { overview: "GitHub Intro.", features: [], installation: "N/A", usage: "N/A" }
+    },
+    {
+      title: "Intro To Markdown",
+      description: "Introduction to Markdown.",
+      tags: ['Markdown'],
+      category: "Backend & DB",
+      featured: false,
+      fileStructure: `└── intro-to-markdown/
+    ├── LICENSE
+    ├── README.md
+    └── index.md`,
+      details: { overview: "Markdown guide.", features: [], installation: "N/A", usage: "Read index.md" }
+    },
+    {
+      title: "Reality Example",
+      description: "Reality example project.",
+      tags: ['HTML'],
+      category: "App Development",
+      featured: false,
+      fileStructure: `└── reality_example/
+    ├── README.md
+    └── rough.html`,
+      details: { overview: "Example.", features: [], installation: "N/A", usage: "N/A" }
+    },
+    {
+      title: "Intro On Git",
+      description: "Intro on Git guide.",
+      tags: ['Git'],
+      category: "Backend & DB",
+      featured: false,
+      fileStructure: `└── intro-on-git/
+    ├── PROFILE.md
+    └── README.md`,
+      details: { overview: "Git guide.", features: [], installation: "N/A", usage: "N/A" }
+    },
+    {
+      title: "Projectworkonlineshop",
+      description: "Online shop project.",
+      tags: ['Python', 'HTML', 'SQL'],
+      category: "App Development",
+      featured: false,
+      fileStructure: `└── ProjectWorkOnlineShop/
+    ├── README.md
+    ├── email.html
+    ├── main.py
+    ├── shop.sql
+    └── ...`,
+      details: { overview: "E-commerce project.", features: ["SQL Database", "Python Backend"], installation: "pip install -r req.txt", usage: "python main.py" }
+    },
+    {
+      title: "Pyhton Practice",
+      description: "Python practice scripts.",
+      tags: ['HTML', 'Python', 'JavaScript'],
+      category: "Backend & DB",
+      featured: false,
+      fileStructure: `└── PYHTON_PRACTICE/
+    ├── README.md
+    ├── voice_assistant.py
+    ├── sql.py
+    └── ...`,
+      details: { overview: "Practice scripts.", features: [], installation: "N/A", usage: "Run scripts." }
+    },
+    {
+      title: "Python School Gr12",
+      description: "Grade 12 Python projects.",
+      tags: ['HTML', 'Python'],
+      category: "Backend & DB",
+      featured: false,
+      fileStructure: `└── PYTHON_SCHOOL_GR12/
+    ├── README.md
+    ├── store.csv
+    └── student.dat`,
+      details: { overview: "School projects.", features: [], installation: "N/A", usage: "N/A" }
+    },
+    {
+      title: "Code Server Over Internet",
+      description: "Code server deployment.",
+      tags: ['TypeScript', 'Docker'],
+      category: "IoT & Hardware",
+      featured: false,
+      fileStructure: `└── code-server-over-internet/
+    ├── Dockerfile
+    ├── README.md
+    └── package.json`,
+      details: { overview: "Remote code server.", features: ["Docker"], installation: "docker build .", usage: "Run container." }
+    },
+    {
+      title: "Computerscience",
+      description: "Computer Science resources.",
+      tags: ['Python'],
+      category: "Backend & DB",
+      featured: false,
+      fileStructure: `└── ComputerScience/
+    ├── README.md
+    └── SPECIAL_PY_PROGS`,
+      details: { overview: "CS Resources.", features: [], installation: "N/A", usage: "N/A" }
     }
   ];
 
