@@ -1,5 +1,5 @@
 # 💫 About Me:
-🔭 I’m currently working on: Building full-stack web applications integrated with AI models and computer vision.<br><br>👯 I’m looking to collaborate on: Projects that bridge the gap between Machine Learning and modern Web Development.<br><br>🤝 I’m looking for help with: Optimizing model inference for the web and scalable backend architecture.<br><br>🌱 I’m currently learning: PyTorch, Next.js, and how to deploy ML pipelines to the cloud.<br><br>💬 Ask me about: Python, React, Neural Networks, and JavaScript.<br><br>⚡ Fun fact: I spend half my time fighting CSS alignment and the other half cleaning datasets.
+🔭 I’m currently working on: Building full-stack web applications integrated with AI models and computer vision.<br><br>👯 I’m looking to collaborate on: Projects that bridge the gap between Machine Learning and modern Web Development.<br><br>🤝 I’m looking for help with: Optimizing model inference for the web and scalable backend architecture.<br><br>🌱 I’m currently learning: PyTorch, Next.js, and how to deploy ML pipelines to the cloud.<br><br>💬 Ask me about: Python, React, Neural Networks, and JavaScript.<br><br>⚡ Fun fact: I spend half my time fighting CSS alignment and the other half cleaning datasets.<br><br> 🌍 Check out my website: tejasranjith.in
 
 
 ## 🌐 Socials:
