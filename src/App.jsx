@@ -24,7 +24,8 @@ import {
   MonitorPlay,
   FileText,
   Copy,
-  Check
+  Check,
+  FolderTree
 } from 'lucide-react';
 
 // --- CSS for Hidden Scrollbar ---
@@ -42,36 +43,15 @@ const scrollbarStyles = `
 const RevealOnScroll = ({ children, className = "", delay = 0 }) => {
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef(null);
-
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.unobserve(entry.target);
-        }
-      },
-      { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
-    );
-
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-
-    return () => {
-      if (ref.current) observer.unobserve(ref.current);
-    };
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) { setIsVisible(true); observer.unobserve(entry.target); }
+    }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+    if (ref.current) observer.observe(ref.current);
+    return () => { if (ref.current) observer.unobserve(ref.current); };
   }, []);
-
   return (
-    <div
-      ref={ref}
-      className={`transition-all duration-1000 cubic-bezier(0.17, 0.55, 0.55, 1) ${isVisible
-          ? 'opacity-100 translate-y-0 filter blur-0'
-          : 'opacity-0 translate-y-12 filter blur-sm'
-        } ${className}`}
-      style={{ transitionDelay: `${delay}ms` }}
-    >
+    <div ref={ref} className={`transition-all duration-1000 cubic-bezier(0.17, 0.55, 0.55, 1) ${isVisible ? 'opacity-100 translate-y-0 filter blur-0' : 'opacity-0 translate-y-12 filter blur-sm'} ${className}`} style={{ transitionDelay: `${delay}ms` }}>
       {children}
     </div>
   );
@@ -80,80 +60,47 @@ const RevealOnScroll = ({ children, className = "", delay = 0 }) => {
 // --- Background: Circuitry Animation ---
 const CircuitBackground = ({ isDarkMode }) => {
   const canvasRef = useRef(null);
-
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
     let width = window.innerWidth;
     let height = window.innerHeight;
-
-    const resize = () => {
-      width = window.innerWidth;
-      height = window.innerHeight;
-      canvas.width = width;
-      canvas.height = height;
-    };
+    const resize = () => { width = window.innerWidth; height = window.innerHeight; canvas.width = width; canvas.height = height; };
     window.addEventListener('resize', resize);
     resize();
-
     const gridSize = 40;
     const signalCount = 15;
     const signals = [];
-
     class Signal {
-      constructor() {
-        this.reset();
-      }
-
+      constructor() { this.reset(); }
       reset() {
         this.x = Math.floor(Math.random() * (width / gridSize)) * gridSize;
         this.y = Math.floor(Math.random() * (height / gridSize)) * gridSize;
         const dirs = [{ x: 1, y: 0 }, { x: -1, y: 0 }, { x: 0, y: 1 }, { x: 0, y: -1 }];
         this.dir = dirs[Math.floor(Math.random() * dirs.length)];
-        this.speed = 2;
-        this.life = Math.random() * 100 + 100;
-        this.history = [];
-        this.historyMaxLength = 20;
+        this.speed = 2; this.life = Math.random() * 100 + 100; this.history = []; this.historyMaxLength = 20;
       }
-
       update() {
-        this.life--;
-        this.history.push({ x: this.x, y: this.y });
+        this.life--; this.history.push({ x: this.x, y: this.y });
         if (this.history.length > this.historyMaxLength) this.history.shift();
-        this.x += this.dir.x * this.speed;
-        this.y += this.dir.y * this.speed;
-
+        this.x += this.dir.x * this.speed; this.y += this.dir.y * this.speed;
         if (this.x % gridSize === 0 && this.y % gridSize === 0) {
           if (Math.random() < 0.3) {
             const dirs = [{ x: 1, y: 0 }, { x: -1, y: 0 }, { x: 0, y: 1 }, { x: 0, y: -1 }];
             this.dir = dirs[Math.floor(Math.random() * dirs.length)];
           }
         }
-
-        if (this.life <= 0 || this.x < 0 || this.x > width || this.y < 0 || this.y > height) {
-          this.reset();
-        }
+        if (this.life <= 0 || this.x < 0 || this.x > width || this.y < 0 || this.y > height) this.reset();
       }
-
       draw(ctx) {
         if (this.history.length < 2) return;
-        ctx.beginPath();
-        ctx.moveTo(this.history[0].x, this.history[0].y);
-        for (let i = 1; i < this.history.length; i++) {
-          ctx.lineTo(this.history[i].x, this.history[i].y);
-        }
-        ctx.strokeStyle = `rgba(239, 68, 68, ${this.life / 100})`;
-        ctx.lineWidth = 2;
-        ctx.stroke();
-        ctx.fillStyle = '#ef4444';
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, 2, 0, Math.PI * 2);
-        ctx.fill();
+        ctx.beginPath(); ctx.moveTo(this.history[0].x, this.history[0].y);
+        for (let i = 1; i < this.history.length; i++) ctx.lineTo(this.history[i].x, this.history[i].y);
+        ctx.strokeStyle = `rgba(239, 68, 68, ${this.life / 100})`; ctx.lineWidth = 2; ctx.stroke();
+        ctx.fillStyle = '#ef4444'; ctx.beginPath(); ctx.arc(this.x, this.y, 2, 0, Math.PI * 2); ctx.fill();
       }
     }
-
     for (let i = 0; i < signalCount; i++) signals.push(new Signal());
-
     const staticLines = [];
     const numStaticLines = 50;
     for (let i = 0; i < numStaticLines; i++) {
@@ -163,91 +110,50 @@ const CircuitBackground = ({ isDarkMode }) => {
       const vertical = Math.random() > 0.5;
       staticLines.push({ x: sx, y: sy, length, vertical });
     }
-
     let animationFrameId;
     let time = 0;
-
     const render = () => {
       ctx.clearRect(0, 0, width, height);
       time += 0.05;
       const baseOpacity = isDarkMode ? 0.1 : 0.05;
       const breathing = (Math.sin(time) + 1) * 0.05;
-      ctx.strokeStyle = isDarkMode
-        ? `rgba(255, 255, 255, ${baseOpacity + breathing})`
-        : `rgba(0, 0, 0, ${baseOpacity + breathing})`;
+      ctx.strokeStyle = isDarkMode ? `rgba(255, 255, 255, ${baseOpacity + breathing})` : `rgba(0, 0, 0, ${baseOpacity + breathing})`;
       ctx.lineWidth = 1;
-
       staticLines.forEach(line => {
-        ctx.beginPath();
-        ctx.moveTo(line.x, line.y);
-        if (line.vertical) {
-          ctx.lineTo(line.x, line.y + line.length);
-        } else {
-          ctx.lineTo(line.x + line.length, line.y);
-        }
-        ctx.stroke();
-        ctx.fillStyle = ctx.strokeStyle;
-        ctx.beginPath();
-        ctx.arc(line.x, line.y, 2, 0, Math.PI * 2);
-        ctx.fill();
+        ctx.beginPath(); ctx.moveTo(line.x, line.y);
+        if (line.vertical) ctx.lineTo(line.x, line.y + line.length); else ctx.lineTo(line.x + line.length, line.y);
+        ctx.stroke(); ctx.fillStyle = ctx.strokeStyle; ctx.beginPath(); ctx.arc(line.x, line.y, 2, 0, Math.PI * 2); ctx.fill();
       });
-
-      signals.forEach(signal => {
-        signal.update();
-        signal.draw(ctx);
-      });
-
+      signals.forEach(signal => { signal.update(); signal.draw(ctx); });
       animationFrameId = requestAnimationFrame(render);
     };
-
     render();
-
-    return () => {
-      window.removeEventListener('resize', resize);
-      cancelAnimationFrame(animationFrameId);
-    };
+    return () => { window.removeEventListener('resize', resize); cancelAnimationFrame(animationFrameId); };
   }, [isDarkMode]);
-
-  return (
-    <canvas
-      ref={canvasRef}
-      className="fixed inset-0 z-0 pointer-events-none opacity-60"
-    />
-  );
+  return (<canvas ref={canvasRef} className="fixed inset-0 z-0 pointer-events-none opacity-60" />);
 };
-
 
 const Portfolio = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [scrolled, setScrolled] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(true);
-  const [view, setView] = useState('home'); // 'home' | 'all-projects' | 'project-details'
+  const [view, setView] = useState('home');
   const [selectedProject, setSelectedProject] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState(null);
 
-  // Handle scroll effects
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
+    const handleScroll = () => { setScrolled(window.scrollY > 50); };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Smooth scroll to section
   const scrollTo = (id) => {
     if (view !== 'home') {
-      setView('home');
-      setSelectedProject(null);
-      setTimeout(() => {
-        const element = document.getElementById(id);
-        if (element) element.scrollIntoView({ behavior: 'smooth' });
-      }, 100);
+      setView('home'); setSelectedProject(null); setSelectedCategory(null);
+      setTimeout(() => { const element = document.getElementById(id); if (element) element.scrollIntoView({ behavior: 'smooth' }); }, 100);
     } else {
       const element = document.getElementById(id);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-        setActiveSection(id);
-      }
+      if (element) { element.scrollIntoView({ behavior: 'smooth' }); setActiveSection(id); }
     }
   };
 
@@ -265,7 +171,15 @@ const Portfolio = () => {
       title: "Legal RAG System",
       description: "A privacy-first, local AI assistant for legal professionals. Uses Ollama (Llama 3), LangChain, and ChromaDB to analyze PDF contracts entirely offline with encryption at rest.",
       tags: ['Python', 'Streamlit', 'Ollama', 'RAG'],
+      category: "AI & ML",
       featured: true,
+      fileStructure: `└── legal_rag_system/
+    ├── app.py
+    ├── database.py
+    ├── rag_engine.py
+    ├── README.md
+    ├── requirements.txt
+    └── security.py`,
       details: {
         overview: "The Legal RAG System is a cutting-edge Retrieval-Augmented Generation application designed to help legal professionals analyze contracts without compromising client privacy. It operates entirely offline, ensuring no data ever leaves the local machine.",
         features: [
@@ -283,7 +197,22 @@ const Portfolio = () => {
       title: "ExoSeek (Exo_Planet)",
       description: "Interactive space-themed web app for exploring exoplanets. Features ML classification models (Kepler/TESS data) and a 3D solar system visualization.",
       tags: ['Flask', 'Python', 'Machine Learning', 'Three.js'],
+      category: "AI & ML",
       featured: true,
+      fileStructure: `└── Exo_Planet/
+    ├── app.py
+    ├── models
+    │   ├── ensemble_model.pkl
+    │   ├── NASA.ipynb
+    │   ├── preprocessor.pkl
+    │   └── ...
+    ├── static
+    │   ├── script.js
+    │   └── style.css
+    ├── templates
+    │   ├── index.html
+    │   └── find_exoplanets.html
+    └── requirements.txt`,
       details: {
         overview: "ExoSeek visualizes the universe's exoplanets using data from NASA's Kepler and TESS missions. It combines a Machine Learning backend for planet classification with a stunning Three.js frontend for 3D exploration.",
         features: [
@@ -300,7 +229,14 @@ const Portfolio = () => {
       title: "Water Drop Counter",
       description: "Computer vision application that counts falling water droplets in real-time from video feeds using OpenCV. Built for precise liquid measurement.",
       tags: ['Python', 'OpenCV', 'Streamlit', 'Computer Vision'],
+      category: "AI & ML",
       featured: true,
+      fileStructure: `└── Water_drop_counter/
+    ├── main.py
+    ├── README.md
+    ├── requirements.txt
+    └── static
+        └── bg.mp4`,
       details: {
         overview: "A precise computer vision tool developed to automate the counting of liquid droplets in laboratory settings. It uses contour detection and background subtraction to track fast-moving droplets.",
         features: [
@@ -317,7 +253,19 @@ const Portfolio = () => {
       title: "Pokedex Pro",
       description: "Advanced Flutter app with a catalog of 150+ Pokémon. Integrated TensorFlow Lite for real-time image classification to identify Pokémon from camera feed.",
       tags: ['Flutter', 'Dart', 'TensorFlow Lite', 'AI'],
+      category: "App Development",
       featured: true,
+      fileStructure: `└── Pokedex/
+    ├── assets
+    │   ├── model2.tflite
+    │   └── pokemon.csv
+    ├── lib
+    │   ├── home_page
+    │   ├── llm_api
+    │   ├── main.dart
+    │   └── result_page
+    ├── pubspec.yaml
+    └── README.md`,
       details: {
         overview: "More than just a Pokedex, this app serves as a field guide for trainers. Point your camera at any Pokemon merchandise or image, and the integrated TFLite model will identify it instantly.",
         features: [
@@ -334,7 +282,18 @@ const Portfolio = () => {
       title: "RecipeMedia",
       description: "A social-media style platform for sharing recipes. Built with Flutter and Supabase, featuring user profiles, infinite feeds, and media uploads.",
       tags: ['Flutter', 'Supabase', 'Dart', 'Social'],
+      category: "App Development",
       featured: true,
+      fileStructure: `└── RecipeMedia/
+    ├── recipe_media
+    │   ├── lib
+    │   │   ├── main.dart
+    │   │   ├── HomeScreen.dart
+    │   │   ├── ProfilePage.dart
+    │   │   ├── CreateNewReceipe.dart
+    │   │   └── ...
+    │   └── pubspec.yaml
+    └── README.md`,
       details: {
         overview: "RecipeMedia reimagines the cookbook as a social feed. Users can snap photos of their creations, share step-by-step guides, and follow their favorite chefs.",
         features: [
@@ -351,7 +310,20 @@ const Portfolio = () => {
       title: "Teachers Day App",
       description: "A modern Next.js application designed for event management, featuring a clean UI powered by Tailwind CSS and backend integration.",
       tags: ['Next.js', 'React', 'TypeScript', 'Tailwind'],
+      category: "App Development",
       featured: true,
+      fileStructure: `└── teachers_day/
+    ├── apphosting.yaml
+    ├── next.config.ts
+    ├── package.json
+    ├── public
+    ├── src
+    │   ├── ai
+    │   ├── app
+    │   ├── components
+    │   ├── hooks
+    │   └── lib
+    └── tsconfig.json`,
       details: {
         overview: "Built for organizing the annual Teacher's Day celebration, this app handled RSVPs, event scheduling, and a digital message board for students to leave notes.",
         features: [
@@ -368,54 +340,119 @@ const Portfolio = () => {
       title: "Fuel Tracker",
       description: "A utility web application to track fuel consumption and efficiency over time.",
       tags: ['React', 'TypeScript', 'Vite', 'Recharts'],
+      category: "App Development",
       featured: false,
+      fileStructure: `└── fuel-tracker/
+    ├── src
+    │   ├── App.tsx
+    │   ├── main.tsx
+    │   └── ...
+    ├── package.json
+    ├── tsconfig.json
+    └── vite.config.ts`,
       details: { overview: "Tracks mileage and costs.", features: ["Chart visualization", "Local Storage"], installation: "npm install", usage: "Add entry." }
     },
     {
       title: "Toxic Tweet Analysis",
       description: "NLP project using TF-IDF vectorization and Linear Support Vector Classifiers to identify toxic content on social media.",
       tags: ['Python', 'NLP', 'Scikit-Learn', 'Pandas'],
+      category: "AI & ML",
       featured: false,
+      fileStructure: `└── sentiment_analysis/
+    ├── README.md
+    └── Toxic_Tweet_Classification_LinearSVC.ipynb`,
       details: { overview: "Identifies toxic language.", features: ["TF-IDF", "SVM Classifier"], installation: "pip install scikit-learn", usage: "Input text to classify." }
     },
     {
       title: "StockNLP",
       description: "Stock market trend prediction tool leveraging Natural Language Processing on news headlines.",
       tags: ['Python', 'NLP', 'Finance', 'Jupyter'],
+      category: "AI & ML",
       featured: false,
+      fileStructure: `└── stocknlp/
+    ├── README.md
+    ├── stocknlpprediction.ipynb
+    └── stocknlpprediction.py`,
       details: { overview: "Predicts trends from news.", features: ["Sentiment Analysis", "Historical Data"], installation: "pip install pandas", usage: "Run notebook." }
     },
     {
       title: "Aesthetix",
       description: "A collection of algorithmic solutions and aesthetic UI components for Python-based CLI tools.",
       tags: ['Python', 'Algorithms', 'CLI'],
+      category: "AI & ML",
       featured: false,
+      fileStructure: `└── Aesthetix/
+    ├── 128longest_consecutive_sequence.py
+    ├── 1two_sum.py
+    ├── 3sum.py
+    ├── listoffunc.py
+    └── ...`,
       details: { overview: "CLI UI tools.", features: ["Colors", "Progress Bars"], installation: "pip install aesthetix", usage: "Import module." }
     },
     {
       title: "Test BBot",
       description: "An experimental bot framework integrating Python backend logic with a lightweight HTML/JS frontend.",
       tags: ['Python', 'JavaScript', 'Bot Dev'],
+      category: "IoT & Hardware",
       featured: false,
+      fileStructure: `└── test_bbot/
+    ├── index.html
+    ├── requirements.txt
+    ├── script.js
+    ├── styles.css
+    └── test.py`,
       details: { overview: "Bot framework.", features: ["Async logic", "Web Interface"], installation: "python main.py", usage: "Chat via web." }
     },
     {
       title: "Drop Basic",
       description: "Fundamental fluid dynamics simulation scripts implemented in Python.",
       tags: ['Python', 'Physics', 'Simulation'],
+      category: "AI & ML",
       featured: false,
+      fileStructure: `└── drop_basic/
+    ├── main.py
+    ├── requirements.txt
+    └── vercel.json`,
       details: { overview: "Physics sim.", features: ["Fluid dynamics", "Matplotlib"], installation: "pip install numpy", usage: "Run simulation." }
     },
     {
       title: "Session Site",
       description: "A lightweight session management web interface.",
       tags: ['HTML', 'CSS', 'JavaScript'],
+      category: "Backend & DB",
       featured: false,
+      fileStructure: `└── session-site/
+    ├── index.html
+    └── README.md`,
       details: { overview: "Session manager.", features: ["Cookies", "State"], installation: "Open index.html", usage: "Login to test." }
+    },
+    {
+      title: "Session",
+      description: "Python backend scripts for session management logic.",
+      tags: ['Python', 'Backend'],
+      category: "Backend & DB",
+      featured: false,
+      fileStructure: `└── session/
+    ├── 1480.Running_sum_of_1d_array.py
+    ├── example.py
+    └── README.md`,
+      details: { overview: "Backend logic.", features: ["Array manipulation", "Session tokens"], installation: "python example.py", usage: "Run scripts." }
     }
   ];
 
   const featuredProjects = allProjects.filter(p => p.featured);
+
+  // --- Category Logic ---
+  const handleCategoryClick = (categoryName) => {
+    setSelectedCategory(categoryName);
+    setView('category-projects');
+    window.scrollTo(0, 0);
+  };
+
+  const getFilteredProjects = () => {
+    if (!selectedCategory) return [];
+    return allProjects.filter(p => p.category === selectedCategory);
+  };
 
   // Theme configuration objects
   const theme = {
@@ -546,6 +583,21 @@ const Portfolio = () => {
                   </p>
                 </div>
 
+                {/* --- ADDED: File Structure Section --- */}
+                {selectedProject.fileStructure && (
+                  <div className={`p-8 border ${theme.border} ${theme.cardBg}`}>
+                    <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
+                      <FolderTree className="text-red-500" size={20} />
+                      FILE STRUCTURE
+                    </h3>
+                    <div className="bg-[#0f0f0f] p-4 rounded-sm border border-neutral-800 overflow-x-auto">
+                      <pre className="font-mono text-xs text-neutral-400 leading-relaxed">
+                        {selectedProject.fileStructure}
+                      </pre>
+                    </div>
+                  </div>
+                )}
+
                 <div className={`p-8 border ${theme.border} ${theme.cardBg}`}>
                   <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
                     <MonitorPlay className="text-red-500" size={20} />
@@ -582,6 +634,65 @@ const Portfolio = () => {
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </section>
+      ) : view === 'category-projects' ? (
+        // --- CATEGORY PROJECTS VIEW ---
+        <section className={`min-h-screen pt-32 pb-24 px-6 ${theme.bg}`}>
+          <div className="max-w-6xl mx-auto">
+            <div className="mb-12">
+              <button
+                onClick={() => setView('home')}
+                className={`flex items-center gap-2 mb-6 ${theme.textSub} hover:text-red-500 transition-colors group`}
+              >
+                <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+                BACK TO HOME
+              </button>
+              <div className="flex items-center gap-4 mb-4">
+                <h2 className="text-4xl md:text-6xl font-bold tracking-tighter uppercase">{selectedCategory}</h2>
+                <span className="px-3 py-1 bg-red-500/10 border border-red-500/20 text-red-500 text-sm font-mono rounded">
+                  {getFilteredProjects().length} PROJECTS
+                </span>
+              </div>
+              <p className={`text-lg ${theme.textSub}`}>Curated projects specialized in {selectedCategory}.</p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {getFilteredProjects().map((project, index) => (
+                <div
+                  key={index}
+                  onClick={() => openProjectDetails(project)}
+                  className={`p-6 border ${theme.border} ${theme.cardBg} hover:border-red-500 transition-all duration-300 group cursor-pointer`}
+                >
+                  <div className="flex justify-between items-start mb-4">
+                    <div className={`p-2 rounded-full border ${theme.border} ${theme.textSub}`}>
+                      {project.featured ? <Zap size={20} className="text-yellow-500" /> : <Layers size={20} />}
+                    </div>
+                    <div className="flex gap-2">
+                      <Github className={`w-5 h-5 ${theme.textSub} hover:text-red-500 cursor-pointer transition-colors`} />
+                    </div>
+                  </div>
+
+                  <h3 className={`text-xl font-bold mb-3 group-hover:text-red-500 transition-colors`}>{project.title}</h3>
+                  <p className={`text-sm ${theme.textSub} mb-6 leading-relaxed h-20 overflow-y-auto no-scrollbar`}>
+                    {project.description}
+                  </p>
+
+                  <div className="flex flex-wrap gap-2 mt-auto">
+                    {project.tags.slice(0, 3).map((tag, idx) => (
+                      <span key={idx} className={`text-xs font-mono border ${theme.border} px-2 py-1 rounded-sm text-red-500`}>
+                        {tag}
+                      </span>
+                    ))}
+                    {project.tags.length > 3 && (
+                      <span className={`text-xs font-mono border ${theme.border} px-2 py-1 rounded-sm ${theme.textSub}`}>
+                        +{project.tags.length - 3}
+                      </span>
+                    )}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </section>
@@ -667,7 +778,8 @@ const Portfolio = () => {
 
                 <div className="grid grid-cols-2 gap-6">
                   <div className={`border-l-2 border-red-500 pl-4`}>
-                    <div className="text-3xl font-bold mb-1">6+</div>
+                    {/* CHANGED: 50+ Projects */}
+                    <div className="text-3xl font-bold mb-1">50+</div>
                     <div className={`text-sm ${theme.textSub} font-mono`}>PROJECTS</div>
                   </div>
                   <div className={`border-l-2 border-red-500 pl-4`}>
@@ -736,6 +848,7 @@ const Portfolio = () => {
                     skills={['Python', 'PyTorch', 'TensorFlow', 'OpenCV', 'Gemini API']}
                     theme={theme}
                     isDarkMode={isDarkMode}
+                    onClick={() => handleCategoryClick("AI & ML")}
                   />
                 </RevealOnScroll>
                 <RevealOnScroll delay={200}>
@@ -745,6 +858,7 @@ const Portfolio = () => {
                     skills={['Flutter', 'ReactJS', 'Figma', 'HTML', 'CSS']}
                     theme={theme}
                     isDarkMode={isDarkMode}
+                    onClick={() => handleCategoryClick("App Development")}
                   />
                 </RevealOnScroll>
                 <RevealOnScroll delay={300}>
@@ -754,6 +868,7 @@ const Portfolio = () => {
                     skills={['Firebase', 'Supabase', 'MySQL', 'Flask', 'SQL']}
                     theme={theme}
                     isDarkMode={isDarkMode}
+                    onClick={() => handleCategoryClick("Backend & DB")}
                   />
                 </RevealOnScroll>
                 <RevealOnScroll delay={400}>
@@ -763,6 +878,7 @@ const Portfolio = () => {
                     skills={['Raspberry Pi', 'Embedded Systems', 'Git', 'Sensors']}
                     theme={theme}
                     isDarkMode={isDarkMode}
+                    onClick={() => handleCategoryClick("IoT & Hardware")}
                   />
                 </RevealOnScroll>
               </div>
@@ -917,8 +1033,8 @@ const Portfolio = () => {
 
 // Sub-components
 
-const SkillCard = ({ icon, title, skills, theme, isDarkMode }) => (
-  <div className={`group p-6 border ${theme.border} ${theme.cardBg} hover:border-red-500 transition-all duration-300 rounded-sm relative overflow-hidden backdrop-blur-md bg-opacity-80`}>
+const SkillCard = ({ icon, title, skills, theme, isDarkMode, onClick }) => (
+  <div onClick={onClick} className={`group p-6 border ${theme.border} ${theme.cardBg} hover:border-red-500 transition-all duration-300 rounded-sm relative overflow-hidden backdrop-blur-md bg-opacity-80 cursor-pointer`}>
     <div className="absolute top-0 left-0 w-1 h-0 bg-red-600 group-hover:h-full transition-all duration-300"></div>
     <div className="mb-6 transition-transform group-hover:scale-110 duration-300 transform origin-left">{icon}</div>
     <h4 className="text-xl font-bold mb-4 group-hover:text-red-500 transition-colors">{title}</h4>
