@@ -1,9 +1,10 @@
 export const allProjects = [
-{
+    {
         title: "Fuel Tracker",
         description: "A utility web application to track fuel consumption and efficiency over time.",
         tags: ['React', 'TypeScript', 'Vite', 'Recharts'],
         category: "App Development",
+        githubLink: "https://github.com/TejasRanjith/fuel-tracker.git",
         featured: false,
         fileStructure: `└── fuel-tracker/
     ├── src
@@ -15,11 +16,12 @@ export const allProjects = [
     ├── vite.config.ts`,
         details: { overview: "Tracks mileage and costs.", features: ["Chart visualization", "Local Storage"], installation: "npm install", usage: "Add entry." }
     },
-{
+    {
         title: "Pokedex Pro",
         description: "Advanced Flutter app with a catalog of 150+ Pokémon. Integrated TensorFlow Lite for real-time image classification to identify Pokémon from camera feed.",
         tags: ['Flutter', 'Dart', 'TensorFlow Lite', 'AI'],
         category: "App Development",
+        githubLink: "https://github.com/TejasRanjith/Pokedex.git",
         featured: true,
         fileStructure: `└── Pokedex/
     ├── assets
@@ -44,11 +46,12 @@ export const allProjects = [
             usage: "Open the 'Scan' tab to use the camera, or browse the 'Dex' tab to view stats."
         }
     },
-{
+    {
         title: "Legal RAG System",
         description: "A privacy-first, local AI assistant for legal professionals. Uses Ollama (Llama 3), LangChain, and ChromaDB to analyze PDF contracts entirely offline with encryption at rest.",
         tags: ['Python', 'Streamlit', 'Ollama', 'RAG'],
         category: "AI & ML",
+        githubLink: "https://github.com/TejasRanjith/legal_rag_system.git",
         featured: true,
         fileStructure: `└── legal_rag_system/
     ├── app.py
@@ -70,11 +73,12 @@ export const allProjects = [
             usage: "1. Upload a PDF contract.\n2. Wait for embedding generation.\n3. Ask questions like 'What is the termination clause?'"
         }
     },
-{
+    {
         title: "ExoSeek (Exo_Planet)",
         description: "Interactive space-themed web app for exploring exoplanets. Features ML classification models (Kepler/TESS data) and a 3D solar system visualization.",
         tags: ['Flask', 'Python', 'Machine Learning', 'Three.js'],
         category: "AI & ML",
+        githubLink: "https://github.com/TejasRanjith/Exo_Planet.git",
         featured: true,
         fileStructure: `└── Exo_Planet/
     ├── app.py
@@ -102,11 +106,12 @@ export const allProjects = [
             usage: "Run the Flask server and navigate to localhost:5000 to begin your journey."
         }
     },
-{
+    {
         title: "Teachers Day App",
         description: "A modern Next.js application designed for event management, featuring a clean UI powered by Tailwind CSS and backend integration.",
         tags: ['Next.js', 'React', 'TypeScript', 'Tailwind'],
         category: "App Development",
+        githubLink: "https://github.com/TejasRanjith/teachers_day.git",
         featured: true,
         fileStructure: `└── teachers_day/
     ├── apphosting.yaml
@@ -132,11 +137,12 @@ export const allProjects = [
             usage: "Navigate to the RSVP section to confirm attendance."
         }
     },
-{
+    {
         title: "RecipeMedia",
         description: "A social-media style platform for sharing recipes. Built with Flutter and Supabase, featuring user profiles, infinite feeds, and media uploads.",
         tags: ['Flutter', 'Supabase', 'Dart', 'Social'],
         category: "App Development",
+        githubLink: "https://github.com/TejasRanjith/RecipeMedia.git",
         featured: true,
         fileStructure: `└── RecipeMedia/
     ├── recipe_media
@@ -160,11 +166,12 @@ export const allProjects = [
             usage: "Sign up with email, verify, and start posting your culinary creations."
         }
     },
-{
+    {
         title: "Aesthetix",
         description: "A collection of algorithmic solutions and aesthetic UI components for Python-based CLI tools.",
         tags: ['Python', 'Algorithms', 'CLI'],
         category: "AI & ML",
+        githubLink: "https://github.com/TejasRanjith/Aesthetix.git",
         featured: false,
         fileStructure: `└── Aesthetix/
     ├── 128longest_consecutive_sequence.py
@@ -174,11 +181,12 @@ export const allProjects = [
     └── ...`,
         details: { overview: "CLI UI tools.", features: ["Colors", "Progress Bars"], installation: "pip install aesthetix", usage: "Import module." }
     },
-{
+    {
         title: "Session",
         description: "Python backend scripts for session management logic.",
         tags: ['Python', 'Backend'],
         category: "Backend & DB",
+        githubLink: "https://github.com/TejasRanjith/session.git",
         featured: false,
         fileStructure: `└── session/
     ├── 1480.Running_sum_of_1d_array.py
@@ -186,22 +194,24 @@ export const allProjects = [
     └── README.md`,
         details: { overview: "Backend logic.", features: ["Array manipulation", "Session tokens"], installation: "python example.py", usage: "Run scripts." }
     },
-{
+    {
         title: "Session Site",
         description: "A lightweight session management web interface.",
         tags: ['HTML', 'CSS', 'JavaScript'],
         category: "Backend & DB",
+        githubLink: "https://github.com/TejasRanjith/session-site.git",
         featured: false,
         fileStructure: `└── session-site/
     ├── index.html
     └── README.md`,
         details: { overview: "Session manager.", features: ["Cookies", "State"], installation: "Open index.html", usage: "Login to test." }
     },
-{
+    {
         title: "Water Drop Counter",
         description: "Computer vision application that counts falling water droplets in real-time from video feeds using OpenCV. Built for precise liquid measurement.",
         tags: ['Python', 'OpenCV', 'Streamlit', 'Computer Vision'],
         category: "AI & ML",
+        githubLink: "https://github.com/TejasRanjith/Water_drop_counter.git",
         featured: true,
         fileStructure: `└── Water_drop_counter/
     ├── main.py
@@ -221,11 +231,12 @@ export const allProjects = [
             usage: "Upload a video file or connect a camera stream. Adjust the threshold slider until droplets are clearly detected."
         }
     },
-{
+    {
         title: "Drop Basic",
         description: "Fundamental fluid dynamics simulation scripts implemented in Python.",
         tags: ['Python', 'Physics', 'Simulation'],
         category: "AI & ML",
+        githubLink: "https://github.com/TejasRanjith/drop_basic.git",
         featured: false,
         fileStructure: `└── drop_basic/
     ├── main.py
@@ -233,22 +244,24 @@ export const allProjects = [
     └── vercel.json`,
         details: { overview: "Physics sim.", features: ["Fluid dynamics", "Matplotlib"], installation: "pip install numpy", usage: "Run simulation." }
     },
-{
+    {
         title: "Toxic Tweet Analysis",
         description: "NLP project using TF-IDF vectorization and Linear Support Vector Classifiers to identify toxic content on social media.",
         tags: ['Python', 'NLP', 'Scikit-Learn', 'Pandas'],
         category: "AI & ML",
+        githubLink: "https://github.com/TejasRanjith/sentiment_analysis.git",
         featured: false,
         fileStructure: `└── sentiment_analysis/
     ├── README.md
     └── Toxic_Tweet_Classification_LinearSVC.ipynb`,
         details: { overview: "Identifies toxic language.", features: ["TF-IDF", "SVM Classifier"], installation: "pip install scikit-learn", usage: "Input text to classify." }
     },
-{
+    {
         title: "StockNLP",
         description: "Stock market trend prediction tool leveraging Natural Language Processing on news headlines.",
         tags: ['Python', 'NLP', 'Finance', 'Jupyter'],
         category: "AI & ML",
+        githubLink: "https://github.com/TejasRanjith/stocknlp.git",
         featured: false,
         fileStructure: `└── stocknlp/
     ├── README.md
@@ -256,11 +269,12 @@ export const allProjects = [
     └── stocknlpprediction.py`,
         details: { overview: "Predicts trends from news.", features: ["Sentiment Analysis", "Historical Data"], installation: "pip install pandas", usage: "Run notebook." }
     },
-{
+    {
         title: "Test BBot",
         description: "An experimental bot framework integrating Python backend logic with a lightweight HTML/JS frontend.",
         tags: ['Python', 'JavaScript', 'Bot Dev'],
         category: "IoT & Hardware",
+        githubLink: "https://github.com/TejasRanjith/test_bbot.git",
         featured: false,
         fileStructure: `└── test_bbot/
     ├── index.html
@@ -270,11 +284,12 @@ export const allProjects = [
     └── test.py`,
         details: { overview: "Bot framework.", features: ["Async logic", "Web Interface"], installation: "python main.py", usage: "Chat via web." }
     },
-{
+    {
         title: "Aida Web",
         description: "Aida Web project implementation.",
         tags: ['JavaScript', 'TypeScript', 'HTML', 'Ruby', 'CSS'],
         category: "App Development",
+        githubLink: "https://github.com/TejasRanjith/aida-web.git",
         featured: false,
         fileStructure: `└── aida-web/
     ├── README.md
@@ -294,21 +309,23 @@ export const allProjects = [
             usage: "npm run dev"
         }
     },
-{
+    {
         title: "Ai Based Projects",
         description: "Collection of AI based experiments.",
         tags: ['AI'],
         category: "AI & ML",
+        githubLink: "https://github.com/TejasRanjith/Ai-Based-Projects.git",
         featured: false,
         fileStructure: `└── Ai-Based-Projects/
     └── README.md`,
         details: { overview: "AI experiments.", features: [], installation: "N/A", usage: "N/A" }
     },
-{
+    {
         title: "Gitsample",
         description: "Git sample project.",
         tags: ['HTML', 'CSS'],
         category: "Backend & DB",
+        githubLink: "https://github.com/TejasRanjith/gitsample.git",
         featured: false,
         fileStructure: `└── gitsample/
     ├── README.md
@@ -316,11 +333,12 @@ export const allProjects = [
     └── style.css`,
         details: { overview: "Sample git project.", features: [], installation: "N/A", usage: "N/A" }
     },
-{
+    {
         title: "Railizard",
         description: "Railizard application.",
         tags: ['PHP', 'HTML', 'JavaScript', 'CSS'],
         category: "App Development",
+        githubLink: "https://github.com/TejasRanjith/Railizard.git",
         featured: false,
         fileStructure: `└── Railizard/
     ├── README.md
@@ -333,11 +351,12 @@ export const allProjects = [
     └── starter-page.html`,
         details: { overview: "Railizard web app.", features: [], installation: "PHP server required.", usage: "Deploy to server." }
     },
-{
+    {
         title: "Snapwaste",
         description: "Snapwaste mobile application.",
         tags: ['C++', 'HTML', 'Dart'],
         category: "AI & ML",
+        githubLink: "https://github.com/TejasRanjith/SnapWaste.git",
         featured: false,
         fileStructure: `└── SnapWaste/
     ├── README.md
@@ -354,11 +373,12 @@ export const allProjects = [
     └── windows`,
         details: { overview: "Multi-platform app.", features: [], installation: "flutter pub get", usage: "flutter run" }
     },
-{
+    {
         title: "Web Test",
         description: "Web testing project.",
         tags: ['HTML', 'TypeScript', 'JavaScript', 'CSS'],
         category: "App Development",
+        githubLink: "https://github.com/TejasRanjith/web-test.git",
         featured: false,
         fileStructure: `└── web-test/
     ├── README.md
@@ -373,22 +393,24 @@ export const allProjects = [
     ├── vite.config.ts`,
         details: { overview: "Web testing suite.", features: [], installation: "npm install", usage: "npm run test" }
     },
-{
+    {
         title: "Wallie",
         description: "Wallie IoT project.",
         tags: ['Python'],
         category: "IoT & Hardware",
+        githubLink: "https://github.com/TejasRanjith/wallie.git",
         featured: false,
         fileStructure: `└── wallie/
     ├── README.md
     └── wallie.py`,
         details: { overview: "Wallie python script.", features: [], installation: "python wallie.py", usage: "python wallie.py" }
     },
-{
+    {
         title: "Lab",
         description: "Academic lab works and experiments.",
         tags: ['HTML', 'Java', 'Python', 'C'],
         category: "Backend & DB",
+        githubLink: "https://github.com/TejasRanjith/Lab.git",
         featured: false,
         fileStructure: `└── Lab/
     ├── DS
@@ -405,11 +427,12 @@ export const allProjects = [
     └── python`,
         details: { overview: "Lab repository.", features: [], installation: "N/A", usage: "N/A" }
     },
-{
+    {
         title: "Workshop Qr Scanner",
         description: "QR Scanner for workshops.",
         tags: ['Python'],
         category: "App Development",
+        githubLink: "https://github.com/TejasRanjith/Workshop_QR_Scanner.git",
         featured: false,
         fileStructure: `└── Workshop_QR_Scanner/
     ├── README.md
@@ -427,11 +450,12 @@ export const allProjects = [
     └── test-image.jpeg`,
         details: { overview: "QR code tools.", features: ["Scanning", "Generation"], installation: "pip install requirements.txt", usage: "python scanner.py" }
     },
-{
+    {
         title: "Ideaignite",
         description: "Idea Ignite project.",
         tags: ['HTML', 'JavaScript', 'CSS'],
         category: "App Development",
+        githubLink: "https://github.com/TejasRanjith/ideaignite.git",
         featured: false,
         fileStructure: `└── ideaignite/
     ├── CHANGELOG.md
@@ -445,22 +469,24 @@ export const allProjects = [
     └── src`,
         details: { overview: "Idea submission platform.", features: [], installation: "npm install", usage: "npm start" }
     },
-{
+    {
         title: "Ideapitchingwebsite",
         description: "Platform for pitching ideas.",
         tags: ['HTML', 'Python', 'JavaScript', 'CSS'],
         category: "App Development",
+        githubLink: "https://github.com/TejasRanjith/IdeaPitchingWebsite.git",
         featured: false,
         fileStructure: `└── IdeaPitchingWebsite/
     ├── README.md
     └── flask-app`,
         details: { overview: "Flask based pitching site.", features: [], installation: "pip install flask", usage: "python app.py" }
     },
-{
+    {
         title: "Newfolder",
         description: "Miscellaneous scripts.",
         tags: ['Python'],
         category: "Backend & DB",
+        githubLink: "https://github.com/TejasRanjith/newfolder.git",
         featured: false,
         fileStructure: `└── newfolder/
     ├── README.md
@@ -469,22 +495,24 @@ export const allProjects = [
     └── stream.py`,
         details: { overview: "Script collection.", features: [], installation: "N/A", usage: "python stream.py" }
     },
-{
+    {
         title: "Simzflutter",
         description: "Simz Academy flutter app.",
         tags: ['C++', 'HTML', 'Dart'],
         category: "App Development",
+        githubLink: "https://github.com/TejasRanjith/simzflutter.git",
         featured: false,
         fileStructure: `└── simzflutter/
     ├── README.md
     └── simz_academy`,
         details: { overview: "Academy app.", features: [], installation: "flutter pub get", usage: "flutter run" }
     },
-{
+    {
         title: "Futterinternship",
         description: "Flutter internship projects.",
         tags: ['C++', 'HTML', 'Dart'],
         category: "App Development",
+        githubLink: "https://github.com/TejasRanjith/FutterInternship.git",
         featured: false,
         fileStructure: `└── FutterInternship/
     ├── README.md
@@ -496,11 +524,12 @@ export const allProjects = [
     └── team_project`,
         details: { overview: "Internship work.", features: [], installation: "N/A", usage: "N/A" }
     },
-{
+    {
         title: "Project Flutter Internship",
         description: "Flutter internship final project.",
         tags: ['Dart'],
         category: "App Development",
+        githubLink: "https://github.com/TejasRanjith/Project--Flutter-internship.git",
         featured: false,
         fileStructure: `└── Project--Flutter-internship/
     ├── Dart Project
@@ -508,42 +537,46 @@ export const allProjects = [
     └── github.sh`,
         details: { overview: "Final project.", features: [], installation: "N/A", usage: "N/A" }
     },
-{
+    {
         title: "Pythonplayground001",
         description: "Python playground.",
         tags: ['Python'],
         category: "Backend & DB",
+        githubLink: "https://github.com/TejasRanjith/PythonPlayGround001.git",
         featured: false,
         fileStructure: `└── PythonPlayGround001/
     ├── README.md`,
         details: { overview: "Playground.", features: [], installation: "N/A", usage: "N/A" }
     },
-{
+    {
         title: "Testproject",
         description: "Test project.",
         tags: ['Test'],
         category: "Backend & DB",
+        githubLink: "https://github.com/TejasRanjith/TestProject.git",
         featured: false,
         fileStructure: `└── TestProject/
     └── README.md`,
         details: { overview: "Test.", features: [], installation: "N/A", usage: "N/A" }
     },
-{
+    {
         title: "Voice",
         description: "Voice recognition project 2.0.",
         tags: ['HTML', 'Python', 'JavaScript'],
         category: "AI & ML",
+        githubLink: "https://github.com/TejasRanjith/voice.git",
         featured: false,
         fileStructure: `└── voice/
     ├── README.md
     └── project2.0`,
         details: { overview: "Voice tools.", features: [], installation: "pip install requirements.txt", usage: "python main.py" }
     },
-{
+    {
         title: "Learningfest",
         description: "Learning Fest web resources.",
         tags: ['HTML', 'CSS'],
         category: "App Development",
+        githubLink: "https://github.com/TejasRanjith/LearningFest.git",
         featured: false,
         fileStructure: `└── LearningFest/
     ├── README.md
@@ -553,11 +586,12 @@ export const allProjects = [
     └── index.html`,
         details: { overview: "Educational materials.", features: [], installation: "N/A", usage: "Open index.html" }
     },
-{
+    {
         title: "Nasa Space App",
         description: "NASA Space App Challenge submission.",
         tags: ['HTML', 'JavaScript', 'CSS'],
         category: "AI & ML",
+        githubLink: "https://github.com/TejasRanjith/Nasa_Space_App.git",
         featured: false,
         fileStructure: `└── Nasa_Space_App/
     ├── README.md
@@ -568,32 +602,35 @@ export const allProjects = [
     └── ...`,
         details: { overview: "Space app challenge.", features: [], installation: "N/A", usage: "Open index.html" }
     },
-{
+    {
         title: "Example",
         description: "Example HTML project.",
         tags: ['HTML'],
         category: "Backend & DB",
+        githubLink: "https://github.com/TejasRanjith/example.git",
         featured: false,
         fileStructure: `└── example/
     ├── README.md
     └── html.html`,
         details: { overview: "Example.", features: [], installation: "N/A", usage: "Open html.html" }
     },
-{
+    {
         title: "Mulearn Web",
         description: "MuLearn Web portal.",
         tags: ['Web'],
         category: "App Development",
+        githubLink: "https://github.com/TejasRanjith/MuLearn_Web.git",
         featured: false,
         fileStructure: `└── MuLearn_Web/
     ├── README.md`,
         details: { overview: "Web portal.", features: [], installation: "N/A", usage: "N/A" }
     },
-{
+    {
         title: "Astrocoders",
         description: "Astrocoders website.",
         tags: ['HTML', 'JavaScript', 'CSS'],
         category: "App Development",
+        githubLink: "https://github.com/TejasRanjith/AstroCoders.git",
         featured: false,
         fileStructure: `└── AstroCoders/
     ├── README.md
@@ -602,11 +639,12 @@ export const allProjects = [
     └── style.css`,
         details: { overview: "Space themed site.", features: [], installation: "N/A", usage: "Open index.html" }
     },
-{
+    {
         title: "Skills Introduction To Github",
         description: "GitHub skills course.",
         tags: ['Git'],
         category: "Backend & DB",
+        githubLink: "https://github.com/TejasRanjith/skills-introduction-to-github.git",
         featured: false,
         fileStructure: `└── skills-introduction-to-github/
     ├── LICENSE
@@ -615,22 +653,24 @@ export const allProjects = [
     └── images`,
         details: { overview: "GitHub training.", features: [], installation: "N/A", usage: "N/A" }
     },
-{
+    {
         title: "Skills Github Pages",
         description: "GitHub Pages skills course.",
         tags: ['Git', 'Pages'],
         category: "App Development",
+        githubLink: "https://github.com/TejasRanjith/skills-github-pages.git",
         featured: false,
         fileStructure: `└── skills-github-pages/
     ├── LICENSE
     └── README.md`,
         details: { overview: "GitHub Pages.", features: [], installation: "N/A", usage: "N/A" }
     },
-{
+    {
         title: "Calculator",
         description: "Simple Calculator app.",
         tags: ['HTML', 'JavaScript', 'CSS'],
         category: "App Development",
+        githubLink: "https://github.com/TejasRanjith/Calculator.git",
         featured: false,
         fileStructure: `└── Calculator/
     ├── README.md

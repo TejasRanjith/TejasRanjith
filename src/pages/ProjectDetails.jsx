@@ -64,10 +64,15 @@ const ProjectDetails = () => {
                         <h1 className="text-4xl md:text-6xl font-bold tracking-tighter mb-6">{selectedProject.title}</h1>
 
                         <div className="flex gap-4">
-                            <button className="flex items-center gap-2 bg-red-600 text-white px-6 py-3 font-bold hover:bg-red-700 transition-colors rounded-sm">
+                            <a
+                                href={selectedProject.githubLink}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center gap-2 bg-red-600 text-white px-6 py-3 font-bold hover:bg-red-700 transition-colors rounded-sm"
+                            >
                                 <Github size={18} />
                                 VIEW SOURCE
-                            </button>
+                            </a>
                             <button className={`flex items-center gap-2 border ${theme.border} px-6 py-3 font-bold hover:border-red-500 hover:text-red-500 transition-colors rounded-sm`}>
                                 <Globe size={18} />
                                 LIVE DEMO
