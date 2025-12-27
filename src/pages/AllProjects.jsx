@@ -1,7 +1,8 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { useOutletContext, useNavigate } from 'react-router-dom';
-import { ArrowLeft, Github, BrainCircuit, Smartphone, Database, Wifi, Code2, Search, ArrowUpDown, Filter } from 'lucide-react';
-import { allProjects } from '../data/projects';
+import { ArrowLeft, Github, BrainCircuit, Smartphone, Database, Wifi, Code2, Search, ArrowUpDown, Filter, Loader2 } from 'lucide-react';
+import { collection, getDocs, query, orderBy } from 'firebase/firestore';
+import { db } from '../firebase';
 import { getTheme } from '../utils/theme';
 
 const AllProjects = () => {
@@ -9,11 +10,34 @@ const AllProjects = () => {
     const theme = getTheme(isDarkMode);
     const navigate = useNavigate();
 
+    const [projects, setProjects] = useState([]);
+    const [loading, setLoading] = useState(true);
     const [selectedCategory, setSelectedCategory] = useState("All");
     const [searchQuery, setSearchQuery] = useState("");
     const [sortOrder, setSortOrder] = useState("newest"); // 'newest', 'oldest', 'asc', 'desc'
 
     const categories = ["All", "AI & ML", "App Development", "Backend & DB", "IoT & Hardware"];
+
+    useEffect(() => {
+        const fetchProjects = async () => {
+            try {
+                const q = query(collection(db, "projects"), orderBy("createdAt", "desc")); // Assuming createdAt or similar field, else just collection(db, "projects")
+                // Fallback to client side sort if index missing
+                const querySnapshot = await getDocs(collection(db, "projects"));
+                const fetchedProjects = querySnapshot.docs.map(doc => ({
+                    id: doc.id,
+                    ...doc.data()
+                }));
+                setProjects(fetchedProjects);
+            } catch (error) {
+                console.error("Error fetching projects: ", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchProjects();
+    }, []);
 
     const getCategoryIcon = (category) => {
         switch (category) {
@@ -26,7 +50,7 @@ const AllProjects = () => {
     };
 
     const filteredProjects = useMemo(() => {
-        let result = allProjects.map((p, i) => ({ ...p, originalIndex: i }));
+        let result = projects.map((p, i) => ({ ...p, originalIndex: i }));
 
         // Filter by Category
         if (selectedCategory !== "All") {
@@ -38,26 +62,34 @@ const AllProjects = () => {
             const query = searchQuery.toLowerCase();
             result = result.filter(p =>
                 p.title.toLowerCase().includes(query) ||
-                p.description.toLowerCase().includes(query) ||
-                p.tags.some(t => t.toLowerCase().includes(query))
+                (p.description && p.description.toLowerCase().includes(query)) ||
+                (p.tags && p.tags.some(t => t.toLowerCase().includes(query)))
             );
         }
 
         // Sort
         return result.sort((a, b) => {
             switch (sortOrder) {
-                case 'newest': return a.originalIndex - b.originalIndex;
-                case 'oldest': return b.originalIndex - a.originalIndex;
+                case 'newest': return (b.pushedAt?.seconds || 0) - (a.pushedAt?.seconds || 0); // Use pushed timestamp
+                case 'oldest': return (a.pushedAt?.seconds || 0) - (b.pushedAt?.seconds || 0);
                 case 'asc': return a.title.localeCompare(b.title);
                 case 'desc': return b.title.localeCompare(a.title);
                 default: return 0;
             }
         });
-    }, [selectedCategory, searchQuery, sortOrder]);
+    }, [projects, selectedCategory, searchQuery, sortOrder]);
 
     const openProjectDetails = (project) => {
         navigate(`/project/${encodeURIComponent(project.title)}`);
     };
+
+    if (loading) {
+        return (
+            <div className={`min-h-screen flex items-center justify-center ${theme.bg}`}>
+                <Loader2 className={`w-8 h-8 animate-spin ${theme.text}`} />
+            </div>
+        );
+    }
 
     return (
         <section className={`min-h-screen pt-32 pb-24 px-6 ${theme.bg}`}>
@@ -123,7 +155,7 @@ const AllProjects = () => {
                     {filteredProjects.length > 0 ? (
                         filteredProjects.map((project, index) => (
                             <div
-                                key={index}
+                                key={project.id || index}
                                 onClick={() => openProjectDetails(project)}
                                 className={`p-6 border ${theme.border} ${theme.cardBg} hover:border-red-500 transition-all duration-300 group cursor-pointer flex flex-col`}
                             >
@@ -143,12 +175,12 @@ const AllProjects = () => {
                                 </div>
 
                                 <div className="flex flex-wrap gap-2 mt-4">
-                                    {project.tags.slice(0, 3).map((tag, idx) => (
+                                    {project.tags && project.tags.slice(0, 3).map((tag, idx) => (
                                         <span key={idx} className={`text-xs font-mono border ${theme.border} px-2 py-1 rounded-sm text-red-500`}>
                                             {tag}
                                         </span>
                                     ))}
-                                    {project.tags.length > 3 && (
+                                    {project.tags && project.tags.length > 3 && (
                                         <span className={`text-xs font-mono border ${theme.border} px-2 py-1 rounded-sm ${theme.textSub}`}>
                                             +{project.tags.length - 3}
                                         </span>

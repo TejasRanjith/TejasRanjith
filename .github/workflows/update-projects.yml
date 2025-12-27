@@ -1,0 +1,30 @@
+name: Update Projects from GitHub
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # Runs daily at midnight
+  workflow_dispatch: # Allows manual trigger
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Dependencies
+        run: npm ci
+        working-directory: ./portfolio-site
+
+      - name: Run Sync Script
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          # If your script needs other env vars like GITHUB_TOKEN for higher rate limits (optional but recommended)
+          # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+        run: node scripts/sync-projects.js
+        working-directory: ./portfolio-site

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useOutletContext, useNavigate } from 'react-router-dom';
 import { ChevronDown, Download, Mail, ExternalLink, Github, Linkedin, BrainCircuit, Smartphone, Database, Wifi } from 'lucide-react';
 import RevealOnScroll from '../components/RevealOnScroll';
@@ -7,13 +7,32 @@ import ProjectCard from '../components/ProjectCard';
 import SocialButton from '../components/SocialButton';
 import { allProjects } from '../data/projects';
 import { getTheme } from '../utils/theme';
+import { collection, query, where, getDocs, limit } from 'firebase/firestore';
+import { db } from '../firebase';
 
 const Home = () => {
     const { isDarkMode } = useOutletContext();
     const theme = getTheme(isDarkMode);
     const navigate = useNavigate();
 
-    const featuredProjects = allProjects.filter(p => p.featured);
+    const [featuredProjects, setFeaturedProjects] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchFeatured = async () => {
+            try {
+                const q = query(collection(db, "projects"), where("featured", "==", true), limit(6));
+                const snapshot = await getDocs(q);
+                const projects = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                setFeaturedProjects(projects);
+            } catch (error) {
+                console.error("Error fetching featured projects:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchFeatured();
+    }, []);
 
     const scrollTo = (id) => {
         const element = document.getElementById(id);

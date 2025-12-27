@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useOutletContext, useNavigate, useParams } from 'react-router-dom';
-import { ArrowLeft, Code2, Github, Globe, FileText, FolderTree, MonitorPlay, Check, BrainCircuit, Smartphone, Database, Wifi } from 'lucide-react';
-import { allProjects } from '../data/projects';
+import { ArrowLeft, Code2, Github, Globe, FileText, FolderTree, MonitorPlay, Check, BrainCircuit, Smartphone, Database, Wifi, Loader2 } from 'lucide-react';
+import { collection, query, where, getDocs } from 'firebase/firestore';
+import { db } from '../firebase';
 import { getTheme } from '../utils/theme';
 
 const ProjectDetails = () => {
@@ -10,12 +11,44 @@ const ProjectDetails = () => {
     const navigate = useNavigate();
     const { title } = useParams();
 
+    const [selectedProject, setSelectedProject] = useState(null);
+    const [loading, setLoading] = useState(true);
+
     useEffect(() => {
-        window.scrollTo(0, 0);
+        const fetchProject = async () => {
+            window.scrollTo(0, 0);
+            try {
+                const projectTitle = decodeURIComponent(title);
+                const q = query(collection(db, "projects"), where("title", "==", projectTitle));
+                const querySnapshot = await getDocs(q);
+
+                if (!querySnapshot.empty) {
+                    // Assuming title is unique, take the first one
+                    const docData = querySnapshot.docs[0].data();
+                    setSelectedProject(docData);
+                } else {
+                    setSelectedProject(null);
+                }
+            } catch (error) {
+                console.error("Error fetching project details: ", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        if (title) {
+            fetchProject();
+        }
     }, [title]);
 
-    const projectTitle = decodeURIComponent(title);
-    const selectedProject = allProjects.find(p => p.title === projectTitle);
+
+    if (loading) {
+        return (
+            <div className={`min-h-screen flex items-center justify-center ${theme.bg}`}>
+                <Loader2 className={`w-8 h-8 animate-spin ${theme.text}`} />
+            </div>
+        );
+    }
 
     if (!selectedProject) {
         return (
@@ -54,7 +87,7 @@ const ProjectDetails = () => {
 
                     <div className="relative z-10">
                         <div className="flex flex-wrap gap-2 mb-4">
-                            {selectedProject.tags.map((tag, idx) => (
+                            {selectedProject.tags && selectedProject.tags.map((tag, idx) => (
                                 <span key={idx} className="text-xs font-mono bg-red-500/10 text-red-500 border border-red-500/20 px-2 py-1 rounded-sm">
                                     {tag}
                                 </span>
@@ -64,15 +97,17 @@ const ProjectDetails = () => {
                         <h1 className="text-4xl md:text-6xl font-bold tracking-tighter mb-6">{selectedProject.title}</h1>
 
                         <div className="flex gap-4">
-                            <a
-                                href={selectedProject.githubLink}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="flex items-center gap-2 bg-red-600 text-white px-6 py-3 font-bold hover:bg-red-700 transition-colors rounded-sm"
-                            >
-                                <Github size={18} />
-                                VIEW SOURCE
-                            </a>
+                            {selectedProject.githubLink && (
+                                <a
+                                    href={selectedProject.githubLink}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center gap-2 bg-red-600 text-white px-6 py-3 font-bold hover:bg-red-700 transition-colors rounded-sm"
+                                >
+                                    <Github size={18} />
+                                    VIEW SOURCE
+                                </a>
+                            )}
                             <button className={`flex items-center gap-2 border ${theme.border} px-6 py-3 font-bold hover:border-red-500 hover:text-red-500 transition-colors rounded-sm`}>
                                 <Globe size={18} />
                                 LIVE DEMO
