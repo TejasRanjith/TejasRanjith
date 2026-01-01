@@ -56,7 +56,7 @@ const Home = () => {
 
                     <RevealOnScroll delay={400}>
                         <div className={`max-w-xl ${theme.textSub} text-lg md:text-xl leading-relaxed mb-10`}>
-                            Bridging the gap between raw data and intelligent systems. I specialize in Computer Vision, IoT, and building full-stack AI applications.
+                            A motivated Al Engineer and Full-Stack Developer with experience in building interactive applications and implementing machine learning models. Passionate about solving real-world problems through thoughtful solutions at the intersection of data intelligence and user experience, with a strong commitment to continuous learning and leveraging technology to empower people, businesses, and the future of tech.
                         </div>
                     </RevealOnScroll>
 
